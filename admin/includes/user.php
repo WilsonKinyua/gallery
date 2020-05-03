@@ -32,6 +32,7 @@ class User {
     //    return $result_set;
     // }
 
+
 // ===============================================helper method to find all users
 
     public static function find_all_users(){
@@ -47,6 +48,7 @@ class User {
         $the_result_array = self::find_this_query("SELECT * FROM users WHERE user_id = $user_id LIMIT 1");
 
         return !empty($the_result_array) ? array_shift($the_result_array) : false;
+
         // if(!empty($the_result_array)){
 
         //    $the_first_item = array_shift($the_result_array);
@@ -54,7 +56,6 @@ class User {
         // }else{
         //     return false;
         // }
-        // return $found_user_id;
 
 
     }
@@ -68,6 +69,28 @@ class User {
 
 
     // }
+
+
+    // ===============================================verify user from the database
+
+    public static function verify_user($username,$password){
+        global $database;
+
+        $username = $database->escape_string($username);
+        $password = $database->escape_string($password);
+
+        $sql    = "SELECT * FROM users WHERE ";
+        $sql   .= "username = '{$username}' ";
+        $sql   .= "AND password = '{$password}' ";
+        $sql   .= "LIMIT 1 ";
+        
+        $the_result_array = self::find_this_query($sql);
+
+        return !empty($the_result_array) ? array_shift($the_result_array) : false;
+    }
+
+
+
 
     public static function instatiation($the_record){
 

@@ -42,5 +42,5 @@ The initial PHP setup and configuration process is controlled by the use of the 
 
 When PHP is configured, you are ready to build the module and/or executables. The command make should take care of this. If it fails and you can't figure out why, see the Problems section.
 
-# wilsonkinyuam@gmail.com
-# copyright @ 2020# copyright @wilson 2020 
+wilsonkinyuam@gmail.com
+copyright @wilson 2020 

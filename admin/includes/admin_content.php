@@ -30,7 +30,7 @@
                 // }
 
                 $result_user_id = User::find_user_by_id(2);
-               echo  $result_user_id->username;
+                echo $result_user_id->username;
 
                 ?>
         <ol class="breadcrumb">
