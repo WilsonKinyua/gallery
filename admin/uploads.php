@@ -1,5 +1,44 @@
 <?php include("includes/header.php"); ?>
 
+<!-- use this oooooooooooooooooooooorrrr -->
+<?php if(!$session->is_signed_in()) {redirect("login.php");} ?>
+<!-- ============= -->
+<?php
+// check whether the user is login at all if not redirect
+
+// if(isset($_SESSION['user_id']) == 0){
+
+//     redirect("./login.php");
+// }
+
+$message = "";
+
+if(isset($_POST['submit'])){
+
+    $photo = new Photo();
+    $photo->title = $_POST['title'];
+    $photo->set_file($_FILES['file_upload']);
+
+
+    if($photo->save()) {
+
+        $message = "<div class= 'alert-success'>Photo uploaded sucessfully</div>"; 
+        
+        
+        } else {
+        
+        $message = join("<br>", $photo->errors);
+        
+        
+        }
+        
+}
+
+
+
+?>
+
+
         <!-- Navigation -->
         <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
             <!-- Brand and toggle get grouped for better mobile display -->
@@ -31,14 +70,20 @@
                     UPLOAD
                     <small>Subheading</small>
                 </h1>
-                <ol class="breadcrumb">
-                    <li>
-                        <i class="fa fa-dashboard"></i>  <a href="index.php">Dashboard</a>
-                    </li>
-                    <li class="active">
-                        <i class="fa fa-file"></i> Blank Page
-                    </li>
-                </ol>
+                <div class="col-md-6">
+                <form action="" method="post" enctype="multipart/form-data">
+                <div class="form-group">
+                    <?php echo $message; ?>
+                    <label for="title">Title</label>
+                    <input type="text" name="title" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="image">Image</label>
+                <input type="file" class="form-control" name="file_upload" id=""> <br>
+                </div>
+                <input type="submit" class="btn btn-success btn-lg" name="submit">
+            </form>
+            </div>
             </div>
         </div>
         <!-- /.row -->

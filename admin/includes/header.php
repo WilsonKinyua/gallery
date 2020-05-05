@@ -1,6 +1,15 @@
 <?php ob_start() ?>
 <?php require_once "init.php" ?>
+<?php
+// check whether the user is login at all if not redirect
 
+if(isset($_SESSION['user_id']) == 0){
+
+    redirect("./login.php");
+}
+
+
+?>
 
 
 <!DOCTYPE html>

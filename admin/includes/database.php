@@ -85,8 +85,8 @@ public function escape_string($string){
 // =======================================insert id========================
  public function the_insert_id(){
 
-     return $this->connection->insert_id;
-    //  return mysqli_insert_id($this->connection);
+    //  return $this->connection->insert_id;
+     return mysqli_insert_id($this->connection);
 
  }
 

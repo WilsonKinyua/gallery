@@ -3,7 +3,7 @@
 
 // if($session->is_signed_in()){
 
-//     redirect("login.php");
+//     redirect("./login.php");
 // }
 
 
