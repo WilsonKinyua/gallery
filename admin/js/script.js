@@ -18,3 +18,10 @@ $('#numberthree').click(function() {
     $('#mainCoantiner, #formBg').addClass('mystylethird');
     event.stopPropagation();
 });
+
+
+ClassicEditor
+    .create(document.querySelector('#editor'))
+    .catch(error => {
+        console.error(error);
+    });

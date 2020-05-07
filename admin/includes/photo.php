@@ -6,13 +6,15 @@ class Photo extends Db_object {
 
 
     protected static $db_table = "photos";
-    protected static $db_table_fields = array('title', 'description', 'filename', 'type', 'size');
-    public $photo_id;
+    protected static $db_table_fields = array('title', 'caption', 'alternate_text', 'description', 'filename', 'type', 'size');
+    public $id;
     public $title;
     public $description;
     public $filename;
     public $type;
     public $size;
+    public $caption;
+    public $alternate_text;
 
     public $temp_path;
     public $upload_directory      = "images";
@@ -62,7 +64,7 @@ class Photo extends Db_object {
 
 
     public function save() {
-        if($this->photo_id){
+        if($this->id){
 
             $this->update();
         } else {
@@ -106,8 +108,33 @@ class Photo extends Db_object {
         }
     }
 
+    // method to delete the photo===============================================
 
-}
+    public function delete_photo() {
+
+        if($this->delete()) {
+
+        $target_path = '/opt/lampp/htdocs/gallery/admin/images/'. $this->filename;
+
+        //$target_path = SITE_ROOT.DS. 'admin' . DS . $this->picture_path();
+
+        return unlink($target_path) ? true : false;
+
+        } else {
+
+            return false;
+        }
+    }
+
+
+
+
+
+
+	}
+
+
+
 
 
 

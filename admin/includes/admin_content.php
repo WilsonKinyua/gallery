@@ -30,9 +30,11 @@
                 // }
 
                 
-                // $result_user_id = User::find_user_by_id(2);
+                // $result_user_id = User::find_by_id(2);
                 // echo $result_user_id->username;
 
+                // $photo = Photo::find_by_id(2);
+                // echo $photo->filename;
                 // $user = new User();
                 // $user ->username    = "madddddddddddddddddddry";
                 // $user ->password    = "mardddddddddddddy2";

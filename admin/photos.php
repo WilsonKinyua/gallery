@@ -1,5 +1,5 @@
 <?php include("includes/header.php"); ?>
-<?php if(!$session->is_signed_in()) {redirect("login.php");} ?>
+<?php // if(!$session->is_signed_in()) {redirect("login.php");} ?>
 <?php
 
 $photos = Photo::find_all();
@@ -50,8 +50,16 @@ $photos = Photo::find_all();
                         <tbody>
                             <?php foreach ($photos as $photo) : ?>
                             <tr>
-                                <td><img height="100%" src="<?php echo $photo->picture_path(); ?>" alt=""></td>
-                                <td><?php echo $photo->photo_id; ?></td>
+                                <td><img class="admin-photo-thumbnail"  src="<?php echo $photo->picture_path(); ?>" alt="">
+                                <br>
+                                    <div class="action_link">
+                                    <a class="delete-link" href="delete_photo.php?id=<?php echo $photo->id; ?>">Delete</a>
+                                    <a class="edit_link" href="edit_photo.php?id=<?php echo $photo->id; ?>">Edit</a>
+                                    <a href="">View</a>
+                                    </div>
+                                
+                                </td>
+                                <td><?php echo $photo->id; ?></td>
                                 <td><?php echo $photo->filename; ?></td>
                                 <td><?php echo $photo->title; ?></td>
                                 <td><?php echo $photo->size; ?></td>

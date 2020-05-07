@@ -3,10 +3,10 @@
 <?php
 // check whether the user is login at all if not redirect
 
-if(isset($_SESSION['user_id']) == 0){
+// if(isset($_SESSION['user_id']) == 0){
 
-    redirect("./login.php");
-}
+//     redirect("./login.php");
+// }
 
 
 ?>
@@ -30,6 +30,7 @@ if(isset($_SESSION['user_id']) == 0){
 
     <!-- Custom CSS -->
     <link href="css/sb-admin.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style2.css">
 
     <!-- Custom Fonts -->
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">

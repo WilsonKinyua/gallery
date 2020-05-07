@@ -1,14 +1,25 @@
 <?php
-
-
-
 class Db_object {
+
+    public $errors       = array();
+    public $upload_errors_array = array(
+        
+        UPLOAD_ERR_OK           => "There is no error",
+        UPLOAD_ERR_INI_SIZE		=> "The uploaded file exceeds the upload_max_filesize directive in php.ini",
+        UPLOAD_ERR_FORM_SIZE    => "The uploaded file exceeds the MAX_FILE_SIZE directive that was specified in the HTML form",
+        UPLOAD_ERR_PARTIAL      => "The uploaded file was only partially uploaded.",
+        UPLOAD_ERR_NO_FILE      => "No file was uploaded.",               
+        UPLOAD_ERR_NO_TMP_DIR   => "Missing a temporary folder.",
+        UPLOAD_ERR_CANT_WRITE   => "Failed to write file to disk.",
+        UPLOAD_ERR_EXTENSION    => "A PHP extension stopped the file upload."					
+                                                    
+    
+    );
 
     protected static $db_table = "";
     protected static $db_table_fields = array();
 
         // ===============================================helper method to find all users
-
     public static function find_all(){
 
         return static::find_by_query("SELECT * FROM " . static::$db_table . " ");
@@ -16,10 +27,11 @@ class Db_object {
       }
   
       //=============================================== helper method to find the user id
-      public static function find_by_id($user_id){
+      public static function find_by_id($id){
+
+        global $database;
   
-  
-          $the_result_array = static::find_by_query("SELECT * FROM " . static::$db_table ." WHERE user_id = $user_id LIMIT 1");
+          $the_result_array = static::find_by_query("SELECT * FROM " . static::$db_table . " WHERE id = $id ");
   
           return !empty($the_result_array) ? array_shift($the_result_array) : false;
   
@@ -34,12 +46,12 @@ class Db_object {
   
       }
   
-      // public static function find_user_by_id($user_id){
+      // public static function find_user_by_id($id){
   
   
-      //     $result_set = static::find_by_query("SELECT * FROM users WHERE user_id = $user_id LIMIT 1");
-      //     $found_user_id = mysqli_fetch_array($result_set);
-      //     return $found_user_id;
+      //     $result_set = static::find_by_query("SELECT * FROM users WHERE id = $id LIMIT 1");
+      //     $found_id = mysqli_fetch_array($result_set);
+      //     return $found_id;
   
   
       // }
@@ -79,11 +91,11 @@ class Db_object {
             }
 
         }
-        // $the_object->user_id      = $result_user_id['user_id'];
-        // $the_object->username     = $result_user_id['username'];
-        // $the_object->password     = $result_user_id['password'];
-        // $the_object->first_name   = $result_user_id['first_name'];
-        // $the_object->last_name    = $result_user_id['last_name'];
+        // $the_object->id      = $result_id['id'];
+        // $the_object->username     = $result_id['username'];
+        // $the_object->password     = $result_id['password'];
+        // $the_object->first_name   = $result_id['first_name'];
+        // $the_object->last_name    = $result_id['last_name'];
 
         return $the_object;
     }
@@ -135,7 +147,7 @@ class Db_object {
 
         global $database;
 
-        return (isset($this->user_id)) ? $this->update() : $this->create();
+        return (isset($this->id)) ? $this->update() : $this->create();
 
         
 
@@ -162,7 +174,7 @@ class Db_object {
 
         if($database->query($sql)){
 
-            $this->user_id = $database->the_insert_id();
+            $this->id = $database->the_insert_id();
             return true;
         } else {
 
@@ -187,14 +199,14 @@ class Db_object {
 
         $sql  = "UPDATE " .static::$db_table ." SET ";
         $sql  .= implode(", ", $properties_pairs);
-        $sql .= " WHERE user_id= " . $database->escape_string($this->user_id);
+        $sql .= " WHERE id= " . $database->escape_string($this->id);
 
         // $sql  = "UPDATE " .static::$db_table ." SET ";
         // $sql .= "username= '" . $database->escape_string($this->username) .   "',";
         // $sql .= "password= '" . $database->escape_string($this->password) .   "',";
         // $sql .= "first_name= '" . $database->escape_string($this->first_name)."',";
         // $sql .= "last_name= '" . $database->escape_string($this->last_name) .  "'";
-        // $sql .= " WHERE user_id= " . $database->escape_string($this->user_id);
+        // $sql .= " WHERE id= " . $database->escape_string($this->id);
 
         $database->query($sql); 
 
@@ -207,14 +219,34 @@ class Db_object {
 
         global $database;
 
-        $sql  = "DELETE FROM " .static::$db_table ." ";
-        $sql .= " WHERE user_id =" . $database->escape_string($this->user_id);
-        $sql .= " LIMIT 1";
+        $sql = "DELETE FROM  " .static::$db_table . "  ";
+        $sql .= "WHERE id=" . $database->escape_string($this->id);
 
-        $database->query($sql); 
+        $database->query($sql);
         return (mysqli_affected_rows($database->connection) == 1) ? true : false;
 
     }//============================================end of delete======================== 
+
+
+        // method to delete the photo===============================================
+
+        public function delete_photo() {
+
+            if($this->delete()) {
+    
+            $target_path = '/opt/lampp/htdocs/gallery/admin/images/'. $this->filename;
+    
+            //$target_path = SITE_ROOT.DS. 'admin' . DS . $this->picture_path();
+    
+            return unlink($target_path) ? true : false;
+    
+            } else {
+    
+                return false;
+            }
+        }
+
+
  
   
   
