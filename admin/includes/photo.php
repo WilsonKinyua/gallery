@@ -55,7 +55,7 @@ class Photo extends Db_object {
 
         }
     }
-// =============================gets the specific path of the current picture
+// =============================gets the specific path of the current picture==================
     public function picture_path(){
 
         return $this->upload_directory . DS . $this->filename;
@@ -126,6 +126,26 @@ class Photo extends Db_object {
         }
     }
 
+// AJAX METHOD TO DISPLAY PHOTO DETAILS ON THE MODAL WITHOUT REFRESH
+
+public static function display_sidebar_data($photo_id) {
+
+
+    $photo = Photo::find_by_id($photo_id);
+
+
+    $output = "<a class='thumbnail' href='#'><img  src='{$photo->picture_path()}' ></a> ";
+    $output .= "<p>Name: {$photo->filename}</p>";
+    $output .= "<p>Type: {$photo->type}</p>";
+    $output .= "<p>Size: {$photo->size}</p>";
+
+    echo $output;
+
+
+
+
+
+}
 
 
 

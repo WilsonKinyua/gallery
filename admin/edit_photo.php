@@ -138,3 +138,16 @@ if(empty($_GET['id'])){
 <!-- /#page-wrapper --> 
 
 <?php include("includes/footer.php"); ?>
+
+
+
+<script>
+
+        //========================edit photo sidebar minimize
+
+
+        $('.info-box-header').click(function() {
+        $('.inside').slideToggle('fast');
+        $('#toggle').toggleClass('glyphicon glyphicon-menu-down , glyphicon glyphicon-menu-up ');
+    });
+</script>

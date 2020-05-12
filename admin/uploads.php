@@ -13,11 +13,11 @@
 
 $message = "";
 
-if(isset($_POST['submit'])){
+if(isset($_FILES['file'])){
 
     $photo = new Photo();
     $photo->title = $_POST['title'];
-    $photo->set_file($_FILES['file_upload']);
+    $photo->set_file($_FILES['file']);
 
 
     if($photo->save()) {
@@ -65,10 +65,9 @@ if(isset($_POST['submit'])){
 
         <!-- Page Heading -->
         <div class="row">
-            <div class="col-lg-12">
+            <div class="col-lg-8 col-lg-offset-3">
                 <h1 class="page-header">
-                    UPLOAD
-                    <small>Subheading</small>
+                    UPLOAD AN IMAGE
                 </h1>
                 <div class="col-md-6">
                 <form action="" method="post" enctype="multipart/form-data">
@@ -79,7 +78,7 @@ if(isset($_POST['submit'])){
                     </div>
                     <div class="form-group">
                         <label for="image">Image</label>
-                <input type="file" class="form-control" name="file_upload" id=""> <br>
+                <input type="file" class="form-control" name="file" id=""> <br>
                 </div>
                 <input type="submit" class="btn btn-success btn-lg" name="submit">
             </form>
@@ -87,6 +86,13 @@ if(isset($_POST['submit'])){
             </div>
         </div>
         <!-- /.row -->
+        <div class="row">
+            <div class="col-lg-12">
+                <form action="uploads.php" class="dropzone" method="post">
+
+                </form>
+            </div>
+        </div>
 
         </div>
         <!-- /.container-fluid -->

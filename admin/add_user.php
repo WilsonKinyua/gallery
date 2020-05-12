@@ -24,10 +24,12 @@
 
           $user->set_file($_FILES['user_image']);
           $user->save_user_and_image();
-          $the_message = '<div class="alert alert-success" role="alert">User Added successfully!!!!!</div>';
+          $user->save();
+
+         
 
         }
-
+        $the_message = '<div class="alert alert-success" role="alert">User Added successfully!!!!!</div>';
     }
 
 

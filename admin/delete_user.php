@@ -17,6 +17,7 @@ $user = User::find_by_id($_GET['id']);
 
 if($user) {
 
+    $session->message('<div class="alert alert-danger" role="alert">The user has been deleted!!!!!</div>');
     $user->delete_photo();
 
     header("Location: ./users.php");

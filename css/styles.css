@@ -1,0 +1,22 @@
+.home_page_photo {
+    height: 130px !important;
+    width: 200px !important;
+}
+
+.img-photo {
+    height: 700px !important;
+    width: 1300px !important;
+}
+
+
+/* ==================================Home page pagination================================================ */
+
+.active a {
+    background: rgb(6, 15, 134) !important;
+    color: aliceblue;
+}
+
+.active a:hover {
+    background: rgb(6, 15, 134) !important;
+    color: aliceblue;
+}

@@ -1,5 +1,5 @@
 <?php include("includes/header.php"); ?>
-<?php 
+<?php
 
 // if (!$session->is_signed_in()) {
 //     redirect("login.php");
@@ -11,6 +11,7 @@
 $users = User::find_all();
 
 ?>
+
 <!-- Navigation -->
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <!-- Brand and toggle get grouped for better mobile display -->
@@ -38,9 +39,10 @@ $users = User::find_all();
         <!-- Page Heading -->
         <div class="row">
             <div class="col-lg-12">
+                <p class="align-center"><?php echo $message; ?></p>
                 <h1 class="page-header">
                     USERS
-                   <a href="add_user.php" class="btn btn-primary">Add User</a>
+                    <a href="add_user.php" class="btn btn-primary">Add User</a>
                 </h1>
                 <div class="col-md-12">
                     <table class="table table-hover table-bordered">
@@ -81,3 +83,9 @@ $users = User::find_all();
 <!-- /#page-wrapper -->
 
 <?php include("includes/footer.php"); ?>
+
+<script>
+    $('.delete-link').click(function(){
+       return confirm("Are you sure you want to delete");
+    });
+</script>
