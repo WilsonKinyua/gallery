@@ -1,6 +1,7 @@
 <?php
 
-// ==========================function to autoload all classes in our application
+// ==========================function to autoload all classes in our application==========================
+
 function classAutoloader($class){
 
     $class = strtolower($class);
