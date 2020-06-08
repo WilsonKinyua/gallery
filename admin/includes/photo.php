@@ -154,7 +154,25 @@ public static function display_sidebar_data($photo_id) {
 	}
 
 
+Class Database {
 
+    protected $connection;
+
+    private $connections;
+    private $servername;
+    private $username;
+    private $password;
+
+    public function getconnected() {
+
+        $this->connection = new mysqli(DB_HOST,DB_USER,DB_PASSWORD,DB_NAME);
+    }
+
+    public function __construct(){
+
+        $this->getconnected();
+    }
+}
 
 
 

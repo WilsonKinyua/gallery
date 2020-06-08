@@ -95,3 +95,5 @@ public function escape_string($string){
 
 // instatiate the class
 $database = new Database();
+
+

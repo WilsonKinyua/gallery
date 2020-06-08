@@ -101,8 +101,6 @@ class Db_object {
     }
 
 
-
-
     private function has_the_attribute($the_attribute){
 
         $object_properties = get_object_vars($this);
